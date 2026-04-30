@@ -1,42 +1,82 @@
+
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
-
-  background: radial-gradient(circle at center,
-    rgba(108,43,217,0.15),
-    #ffffff 70%);
+  font-family: Inter, sans-serif;
+  background: #f7f5ff;
+  overflow-x: hidden;
 }
 
 /* PAGE SYSTEM */
 .page {
   display: none;
-  padding: 40px;
+  min-height: 100vh;
+  padding: 25px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .page.active {
-  display: block;
+  display: flex;
 }
 
-/* HEADINGS */
-h1, h2 {
-  font-family: "Poppins";
+/* CENTER WRAPPER */
+.center {
+  max-width: 520px;
+  width: 100%;
+  margin: auto;
+}
+
+/* 🔥 LOGO (FIXED SIZE - NOT SMALL, NOT BIG) */
+.logo {
+  width: 140px;          /* balanced size */
+  max-width: 40vw;
+  height: auto;
+  margin: 10px auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* HEADINGS (INCREASED TEXT SIZE) */
+h1 {
+  font-size: 32px;
   color: #6C2BD9;
+  font-family: Poppins, sans-serif;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 24px;
+  color: #6C2BD9;
+  font-family: Poppins, sans-serif;
+  margin: 10px 0;
+}
+
+/* SLOGAN */
+.slogan {
+  font-size: 16px;
+  color: #555;
+  font-style: italic;
+  min-height: 20px;
+  margin-bottom: 15px;
 }
 
 /* BUTTONS */
 button {
-  padding: 10px 16px;
   margin: 8px;
-  border: none;
-  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
   background: #6C2BD9;
   color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-}
-
-button:hover {
-  background: #4e1fa8;
 }
 
 /* INPUTS */
@@ -44,41 +84,36 @@ input, textarea {
   display: block;
   margin: 10px auto;
   padding: 10px;
-  width: 250px;
+  width: 90%;
+  max-width: 280px;
+  font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 6px;
 }
 
-
-
-.logo {
-  width: 90px;
-  max-width: 25vw;
-  height: auto;
-
-  display: block;
-  margin: 10px auto;
-
-  /* IMPORTANT FIX */
-  max-height: 80px;
-  object-fit: contain;
-}
-/* ROLE IMAGE */
-.role-img {
-  width: 120px;
+/* CARD */
+.card {
+  background: white;
+  margin: 12px auto;
+  padding: 12px;
+  width: 90%;
+  max-width: 300px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  font-size: 15px;
 }
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -240px;
+  left: -220px;
   width: 200px;
   height: 100%;
   background: #6C2BD9;
   color: white;
-  padding-top: 60px;
-  transition: 0.3s;
+  padding-top: 50px;
+  transition: 0.3s ease;
   z-index: 1000;
 }
 
@@ -88,15 +123,31 @@ input, textarea {
 
 .sidebar h3 {
   text-align: center;
+  font-size: 18px;
 }
 
 .sidebar p {
   padding: 12px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .sidebar p:hover {
   background: rgba(255,255,255,0.2);
+}
+
+/* MENU BUTTON */
+.open-menu {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #6C2BD9;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  z-index: 1100;
 }
 
 /* CLOSE BUTTON */
@@ -107,86 +158,7 @@ input, textarea {
   background: white;
   color: #6C2BD9;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-/* OPEN MENU */
-.open-menu {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: #6C2BD9;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 6px;
-  z-index: 1100;
-}
-
-/* CARD */
-.card {
-  background: white;
-  padding: 15px;
-  margin: 15px auto;
-  width: 300px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-}
-
-/* SLOGAN */
-.slogan {
-  color: #6C2BD9;
-  font-style: italic;
-  min-height: 20px;
-  transition: opacity 0.5s ease;
-}
-
-/* CENTERED APP LAYOUT */
-.page {
-  display: none;
-  min-height: 100vh;
-  padding: 20px;
-  text-align: center;
-
-  /* FIX: prevents "too big home screen" feeling */
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* ACTIVE PAGE */
-.page.active {
-  display: flex;
-}
-
-/* HOME CONTENT BOX */
-.center {
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
-}
-
-/* LOGO CONTROL */
-.logo {
-  width: 140px;
-  max-width: 60%;
-  margin-bottom: 10px;
-}
-/* REDUCE SPACING CLUTTER */
-h1 {
-  margin: 10px 0;
-}
-
-.slogan {
-  margin-bottom: 15px;
-}
-
-.center {
-  max-width: 500px;
-  margin: auto;
-  padding-top: 20px;
-
-  /* prevents vertical overflow feel */
-  min-height: unset;
 }
