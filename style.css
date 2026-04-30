@@ -50,12 +50,17 @@ input, textarea {
 }
 
 
+
 .logo {
-  width: 120px;        /* main size */
-  max-width: 35vw;     /* responsive scaling */
+  width: 90px;
+  max-width: 25vw;
   height: auto;
-  margin: 10px auto;
+
   display: block;
+  margin: 10px auto;
+
+  /* IMPORTANT FIX */
+  max-height: 80px;
   object-fit: contain;
 }
 /* ROLE IMAGE */
@@ -175,4 +180,13 @@ h1 {
 
 .slogan {
   margin-bottom: 15px;
+}
+
+.center {
+  max-width: 500px;
+  margin: auto;
+  padding-top: 20px;
+
+  /* prevents vertical overflow feel */
+  min-height: unset;
 }
