@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Campus Notes Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- OPEN MENU -->
+<button class="open-menu" onclick="toggleMenu()">☰</button>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+  <button class="close-btn" onclick="toggleMenu()">✖</button>
+
+  <h3>📘 Menu</h3>
+
+  <p onclick="showPage('rolePage')">🏠 Home</p>
+  <p onclick="showPage('studentLogin')">🎓 Student</p>
+  <p onclick="showPage('adminLogin')">🛠️ Admin</p>
+  <p onclick="showPage('notesPage')">📚 Notes</p>
+</div>
+
+<!-- ROLE PAGE -->
+<div id="rolePage" class="page active">
+
+  <div class="center">
+
+    <img src="https://www.gitamw.ac.in/media/logo/Gouthami_Auto4-1_DvzJqKN.png" class="college-logo">
+
+    <h1>Campus Notes Hub</h1>
+
+    <!-- DYNAMIC SLOGAN -->
+    <p class="slogan" id="sloganText">Loading inspiration...</p>
+
+    <button onclick="showPage('studentLogin')">🎓 Student Login</button>
+    <button onclick="showPage('adminLogin')">🛠️ Admin Login</button>
+
+  </div>
+
+</div>
+
+<!-- STUDENT -->
+<div id="studentLogin" class="page">
+  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="role-img">
+
+  <h2>Student Login</h2>
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+
+  <button onclick="showPage('notesPage')">Login</button>
+  <button onclick="showPage('rolePage')">Back</button>
+</div>
+
+<!-- ADMIN -->
+<div id="adminLogin" class="page">
+  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="role-img">
+
+  <h2>Admin Login</h2>
+  <input placeholder="Admin Email">
+  <input type="password" placeholder="Password">
+
+  <button onclick="showPage('adminDashboard')">Login</button>
+  <button onclick="showPage('rolePage')">Back</button>
+</div>
+
+<!-- NOTES -->
+<div id="notesPage" class="page">
+  <h2>📚 Notes Library</h2>
+
+  <input placeholder="Search notes...">
+
+  <div class="card">
+    <h3>DBMS Unit 1</h3>
+    <p>Semester 4</p>
+    <button>⬇ Download</button>
+  </div>
+
+  <div class="card">
+    <h3>OS Unit 2</h3>
+    <p>Semester 3</p>
+    <button>⬇ Download</button>
+  </div>
+
+  <button onclick="showPage('rolePage')">Logout</button>
+</div>
+
+<!-- ADMIN -->
+<div id="adminDashboard" class="page">
+  <h2>🛠️ Admin Dashboard</h2>
+
+  <input placeholder="Title">
+  <input placeholder="Subject">
+  <textarea placeholder="Description"></textarea>
+
+  <input type="file">
+  <button>Upload</button>
+
+  <button onclick="showPage('rolePage')">Logout</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
