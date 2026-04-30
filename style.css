@@ -1,14 +1,16 @@
-
 body {
   margin: 0;
-  font-family: Inter;
-  background: #f7f5ff;
+  font-family: "Inter", sans-serif;
+
+  background: radial-gradient(circle at center,
+    rgba(108,43,217,0.15),
+    #ffffff 70%);
 }
 
-/* PAGE */
+/* PAGE SYSTEM */
 .page {
   display: none;
-  padding: 20px;
+  padding: 40px;
   text-align: center;
 }
 
@@ -16,76 +18,120 @@ body {
   display: block;
 }
 
-/* LOGO */
-.logo {
-  width: 160px;
-  margin-top: 20px;
-}
-
-/* TEXT */
+/* HEADINGS */
 h1, h2 {
+  font-family: "Poppins";
   color: #6C2BD9;
-  font-family: Poppins;
 }
 
-.slogan {
-  color: #555;
-  min-height: 20px;
-  font-style: italic;
-}
-
-/* BUTTON */
+/* BUTTONS */
 button {
-  margin: 6px;
-  padding: 8px 12px;
+  padding: 10px 16px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
   background: #6C2BD9;
   color: white;
-  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4e1fa8;
+}
+
+/* INPUTS */
+input, textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ddd;
   border-radius: 6px;
 }
 
-/* INPUT */
-input {
+/* LOGO */
+.college-logo {
+  width: 220px;
+  max-width: 80%;
   display: block;
-  margin: 8px auto;
-  padding: 8px;
-  width: 200px;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 3px 10px rgba(108,43,217,0.25));
 }
 
-/* CARD */
-.card {
-  background: white;
-  margin: 10px auto;
-  padding: 10px;
-  width: 220px;
-  border-radius: 8px;
+/* ROLE IMAGE */
+.role-img {
+  width: 120px;
 }
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  left: -200px;
   top: 0;
-  width: 180px;
+  left: -240px;
+  width: 200px;
   height: 100%;
   background: #6C2BD9;
   color: white;
-  padding-top: 40px;
+  padding-top: 60px;
   transition: 0.3s;
+  z-index: 1000;
 }
 
 .sidebar.active {
   left: 0;
 }
 
+.sidebar h3 {
+  text-align: center;
+}
+
 .sidebar p {
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
 }
 
-/* MENU */
+.sidebar p:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  color: #6C2BD9;
+  border: none;
+  border-radius: 6px;
+}
+
+/* OPEN MENU */
 .open-menu {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
+  background: #6C2BD9;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  z-index: 1100;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 15px;
+  margin: 15px auto;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+/* SLOGAN */
+.slogan {
+  color: #6C2BD9;
+  font-style: italic;
+  min-height: 20px;
+  transition: opacity 0.5s ease;
 }
