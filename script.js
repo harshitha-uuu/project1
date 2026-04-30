@@ -1,19 +1,36 @@
 
-function showPage(id) {
-  document.querySelectorAll(".page")
-    .forEach(p => p.classList.remove("active"));
+/* ---------------- PAGE NAVIGATION ---------------- */
 
-  document.getElementById(id).classList.add("active");
+function showPage(pageId) {
+  const pages = document.querySelectorAll(".page");
 
-  document.getElementById("sidebar").classList.remove("active");
+  pages.forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const target = document.getElementById(pageId);
+  if (target) {
+    target.classList.add("active");
+  }
+
+  // auto close sidebar
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar) {
+    sidebar.classList.remove("active");
+  }
 }
 
-/* MENU */
+/* ---------------- SIDEBAR TOGGLE ---------------- */
+
 function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar) {
+    sidebar.classList.toggle("active");
+  }
 }
 
-/* SLOGANS (SAFE LOOP) */
+/* ---------------- SAFE SLOGAN ROTATION ---------------- */
+
 const slogans = [
   "Learn Smart, Build Future",
   "Stay Consistent, Stay Strong",
@@ -27,15 +44,28 @@ const slogans = [
   "You are capable"
 ];
 
-let i = 0;
+let index = 0;
 
-function rotate() {
+function rotateSlogans() {
   const el = document.getElementById("sloganText");
+
   if (!el) return;
 
-  el.innerText = slogans[i];
-  i = (i + 1) % slogans.length;
+  el.style.opacity = 0;
+
+  setTimeout(() => {
+    el.innerText = slogans[index];
+    el.style.opacity = 1;
+
+    index = (index + 1) % slogans.length;
+  }, 400);
 }
 
-setInterval(rotate, 5000);
+/* run every 5 seconds */
+setInterval(rotateSlogans, 5000);
+
+/* start safely after page load */
+window.addEventListener("load", () => {
+  rotateSlogans();
+});
 window.onload = rotate;
