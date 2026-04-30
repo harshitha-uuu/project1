@@ -69,3 +69,26 @@ window.addEventListener("load", () => {
   rotateSlogans();
 });
 window.onload = rotate;
+
+
+/* ---------------- STABLE MOUSE EFFECT ---------------- */
+
+let x = window.innerWidth / 2;
+let y = window.innerHeight / 2;
+
+document.addEventListener("mousemove", (e) => {
+  x = e.clientX;
+  y = e.clientY;
+});
+
+function updateBackground() {
+  document.body.style.background = `
+    radial-gradient(circle at ${x}px ${y}px,
+    rgba(108,43,217,0.15),
+    #f7f5ff 60%,
+    #ffffff 100%)
+  `;
+  requestAnimationFrame(updateBackground);
+}
+
+updateBackground();
