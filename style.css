@@ -135,3 +135,44 @@ input, textarea {
   min-height: 20px;
   transition: opacity 0.5s ease;
 }
+
+/* CENTERED APP LAYOUT */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+
+  /* FIX: prevents "too big home screen" feeling */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ACTIVE PAGE */
+.page.active {
+  display: flex;
+}
+
+/* HOME CONTENT BOX */
+.center {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+/* LOGO CONTROL */
+.logo {
+  width: 140px;
+  max-width: 60%;
+  margin-bottom: 10px;
+}
+/* REDUCE SPACING CLUTTER */
+h1 {
+  margin: 10px 0;
+}
+
+.slogan {
+  margin-bottom: 15px;
+}
