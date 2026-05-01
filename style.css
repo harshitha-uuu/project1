@@ -17,6 +17,7 @@ body {
   min-height: 100vh;
   padding: 25px;
   text-align: center;
+
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -33,19 +34,20 @@ body {
   margin: auto;
 }
 
-/* 🔥 LOGO (FIXED SIZE - NOT SMALL, NOT BIG) */
-
+/* ================= LOGO (FIXED) ================= */
 .college-logo {
-  width: 130px;          /* balanced size */
-  max-width: 30vw;       /* responsive */
+  width: 140px;
+  max-width: 28vw;
+  min-width: 90px;
   height: auto;
-  display: block;
-  margin: 0 auto 10px;
 
-  /* subtle professional glow */
-  filter: drop-shadow(0 2px 8px rgba(108,43,217,0.25));
+  display: block;
+  margin: 0 auto 12px;
+
+  filter: drop-shadow(0 3px 10px rgba(108,43,217,0.25));
 }
-/* HEADINGS (INCREASED TEXT SIZE) */
+
+/* HEADINGS */
 h1 {
   font-size: 32px;
   color: #6C2BD9;
@@ -79,6 +81,10 @@ button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+button:hover {
+  background: #4e1fa8;
 }
 
 /* INPUTS */
@@ -163,26 +169,8 @@ input, textarea {
   border-radius: 5px;
   cursor: pointer;
 }
-}
 
-.cursor-glow {
-  position: fixed;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle,
-    rgba(108,43,217,0.18),
-    transparent 60%);
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-
-.page, .sidebar {
-  position: relative;
-  z-index: 1;
-}
-
+/* ================= MOUSE GLOW (FINAL FIXED) ================= */
 .cursor-glow {
   position: fixed;
   width: 220px;
@@ -191,12 +179,17 @@ input, textarea {
   pointer-events: none;
 
   background: radial-gradient(circle,
-    rgba(180,120,255,0.25),   /* light violet */
+    rgba(180,120,255,0.25),
     rgba(108,43,217,0.10),
     transparent 70%
   );
 
   transform: translate(-50%, -50%);
   z-index: 0;
-  transition: 0.05s linear;
+}
+
+/* keep UI above glow */
+.page, .sidebar {
+  position: relative;
+  z-index: 1;
 }
