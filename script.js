@@ -1,94 +1,54 @@
 
-/* ---------------- PAGE NAVIGATION ---------------- */
-
 function showPage(pageId) {
-  const pages = document.querySelectorAll(".page");
+  document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
 
-  pages.forEach(page => {
-    page.classList.remove("active");
-  });
+  document.getElementById(pageId).classList.add("active");
 
-  const target = document.getElementById(pageId);
-  if (target) {
-    target.classList.add("active");
-  }
-
-  // auto close sidebar
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar) {
-    sidebar.classList.remove("active");
-  }
+  document.getElementById("sidebar").classList.remove("active");
 }
 
-/* ---------------- SIDEBAR TOGGLE ---------------- */
-
+/* SIDEBAR */
 function toggleMenu() {
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar) {
-    sidebar.classList.toggle("active");
-  }
+  document.getElementById("sidebar").classList.toggle("active");
 }
 
-/* ---------------- SAFE SLOGAN ROTATION ---------------- */
+/* SAFE MOUSE GLOW (NO BACKGROUND OVERRIDE) */
+const glow = document.querySelector(".cursor-glow");
 
+document.addEventListener("mousemove", (e) => {
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+/* SLOGANS */
 const slogans = [
-  "Learn Smart, Build Future",
-  "Stay Consistent, Stay Strong",
-  "Small steps → Big success",
-  "Focus today, shine tomorrow",
-  "Knowledge is power",
-  "Dream big, work hard",
-  "Discipline creates success",
-  "Never stop learning",
-  "Push your limits",
-  "You are capable"
+  "📘 Learn Smart. Build Future.",
+  "💡 Small steps lead to big success.",
+  "🚀 Stay consistent, stay strong.",
+  "🔥 Push yourself beyond limits.",
+  "📚 Knowledge is power.",
+  "🎯 Focus today, succeed tomorrow.",
+  "🏆 Excellence is a habit.",
+  "🧠 Train your mind daily.",
+  "⚡ Dream big, work hard.",
+  "🌟 Every expert was once a beginner."
 ];
 
-let index = 0;
+let i = 0;
 
 function rotateSlogans() {
   const el = document.getElementById("sloganText");
-
   if (!el) return;
 
   el.style.opacity = 0;
 
   setTimeout(() => {
-    el.innerText = slogans[index];
+    el.innerText = slogans[i];
     el.style.opacity = 1;
-
-    index = (index + 1) % slogans.length;
-  }, 400);
+    i = (i + 1) % slogans.length;
+  }, 500);
 }
 
-/* run every 5 seconds */
 setInterval(rotateSlogans, 5000);
-
-/* start safely after page load */
-window.addEventListener("load", () => {
-  rotateSlogans();
-});
-window.onload = rotate;
-
-
-/* ---------------- STABLE MOUSE EFFECT ---------------- */
-
-let x = window.innerWidth / 2;
-let y = window.innerHeight / 2;
-
-document.addEventListener("mousemove", (e) => {
-  x = e.clientX;
-  y = e.clientY;
-});
-
-function updateBackground() {
-  document.body.style.background = `
-    radial-gradient(circle at ${x}px ${y}px,
-    rgba(108,43,217,0.15),
-    #f7f5ff 60%,
-    #ffffff 100%)
-  `;
-  requestAnimationFrame(updateBackground);
-}
-
-updateBackground();
+window.onload = rotateSlogans;
