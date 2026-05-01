@@ -14,6 +14,7 @@ function toggleMenu() {
 }
 
 /* SAFE MOUSE GLOW (NO BACKGROUND OVERRIDE) */
+
 const glow = document.querySelector(".cursor-glow");
 
 document.addEventListener("mousemove", (e) => {
