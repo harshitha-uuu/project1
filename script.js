@@ -1,28 +1,32 @@
 
+/* ================= PAGE SWITCH ================= */
 function showPage(pageId) {
-  document.querySelectorAll(".page")
-    .forEach(p => p.classList.remove("active"));
+  const pages = document.querySelectorAll(".page");
 
-  document.getElementById(pageId).classList.add("active");
+  pages.forEach(p => p.classList.remove("active"));
+
+  const target = document.getElementById(pageId);
+  if (target) target.classList.add("active");
 
   document.getElementById("sidebar").classList.remove("active");
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
 function toggleMenu() {
   document.getElementById("sidebar").classList.toggle("active");
 }
 
-/* SAFE MOUSE GLOW (NO BACKGROUND OVERRIDE) */
-
+/* ================= MOUSE GLOW (FIXED) ================= */
 const glow = document.querySelector(".cursor-glow");
 
 document.addEventListener("mousemove", (e) => {
+  if (!glow) return;
+
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
 });
 
-/* SLOGANS */
+/* ================= SLOGANS ================= */
 const slogans = [
   "📘 Learn Smart. Build Future.",
   "💡 Small steps lead to big success.",
@@ -51,5 +55,7 @@ function rotateSlogans() {
   }, 500);
 }
 
+/* start slogans */
 setInterval(rotateSlogans, 5000);
+
 window.onload = rotateSlogans;
