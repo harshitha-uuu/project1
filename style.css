@@ -34,15 +34,17 @@ body {
 }
 
 /* 🔥 LOGO (FIXED SIZE - NOT SMALL, NOT BIG) */
-.logo {
-  width: 140px;          /* balanced size */
-  max-width: 40vw;
-  height: auto;
-  margin: 10px auto;
-  display: block;
-  object-fit: contain;
-}
 
+.college-logo {
+  width: 130px;          /* balanced size */
+  max-width: 30vw;       /* responsive */
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+
+  /* subtle professional glow */
+  filter: drop-shadow(0 2px 8px rgba(108,43,217,0.25));
+}
 /* HEADINGS (INCREASED TEXT SIZE) */
 h1 {
   font-size: 32px;
@@ -179,4 +181,22 @@ input, textarea {
 .page, .sidebar {
   position: relative;
   z-index: 1;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(circle,
+    rgba(180,120,255,0.25),   /* light violet */
+    rgba(108,43,217,0.10),
+    transparent 70%
+  );
+
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: 0.05s linear;
 }
