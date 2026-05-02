@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Campus Notes Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -11,8 +14,10 @@
 
 <body>
 
+<!-- OPEN MENU -->
 <button class="open-menu" onclick="toggleMenu()">☰</button>
 
+<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar">
   <button class="close-btn" onclick="toggleMenu()">✖</button>
 
@@ -24,14 +29,18 @@
   <p onclick="showPage('notesPage')">📚 Notes</p>
 </div>
 
+<!-- ROLE PAGE -->
 <div id="rolePage" class="page active">
 
   <div class="center">
 
-    <img src="https://www.gitamw.ac.in/media/logo/Gouthami_Auto4-1_DvzJqKN.png" class="college-logo">
+    <div class="logo-box">
+      <img src="https://www.gitamw.ac.in/media/logo/Gouthami_Auto4-1_DvzJqKN.png" class="college-logo" alt="College Logo">
+    </div>
 
     <h1>Campus Notes Hub</h1>
 
+    <!-- DYNAMIC SLOGAN -->
     <p class="slogan" id="sloganText">Loading inspiration...</p>
 
     <button onclick="showPage('studentLogin')">🎓 Student Login</button>
@@ -41,6 +50,7 @@
 
 </div>
 
+<!-- STUDENT -->
 <div id="studentLogin" class="page">
   <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="role-img">
 
@@ -52,6 +62,7 @@
   <button onclick="showPage('rolePage')">Back</button>
 </div>
 
+<!-- ADMIN -->
 <div id="adminLogin" class="page">
   <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="role-img">
 
@@ -63,6 +74,7 @@
   <button onclick="showPage('rolePage')">Back</button>
 </div>
 
+<!-- NOTES -->
 <div id="notesPage" class="page">
   <h2>📚 Notes Library</h2>
 
@@ -83,6 +95,7 @@
   <button onclick="showPage('rolePage')">Logout</button>
 </div>
 
+<!-- ADMIN -->
 <div id="adminDashboard" class="page">
   <h2>🛠️ Admin Dashboard</h2>
 
@@ -96,8 +109,11 @@
   <button onclick="showPage('rolePage')">Logout</button>
 </div>
 
-<!-- FIXED mouse layer -->
+<!-- MOUSE GLOW -->
 <div class="cursor-glow"></div>
+
+<!-- POPUP LOADING MESSAGE -->
+<div id="popup" class="popup hidden"></div>
 
 <script src="script.js"></script>
 </body>
