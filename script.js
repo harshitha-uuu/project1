@@ -1,32 +1,48 @@
-
-/* ================= PAGE SWITCH ================= */
 function showPage(pageId) {
-  const pages = document.querySelectorAll(".page");
+  showPopup("Loading page...");
 
+  const pages = document.querySelectorAll(".page");
   pages.forEach(p => p.classList.remove("active"));
 
   const target = document.getElementById(pageId);
   if (target) target.classList.add("active");
 
   document.getElementById("sidebar").classList.remove("active");
+
+  setTimeout(() => {
+    showPopup("Page loaded successfully ✅");
+  }, 600);
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 function toggleMenu() {
   document.getElementById("sidebar").classList.toggle("active");
 }
 
-/* ================= MOUSE GLOW (FIXED) ================= */
+/* MOUSE GLOW */
 const glow = document.querySelector(".cursor-glow");
 
 document.addEventListener("mousemove", (e) => {
   if (!glow) return;
-
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
 });
 
-/* ================= SLOGANS ================= */
+/* POPUP SYSTEM */
+function showPopup(message) {
+  const popup = document.getElementById("popup");
+  if (!popup) return;
+
+  popup.innerText = message;
+  popup.classList.remove("hidden");
+  popup.classList.add("show");
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+  }, 2000);
+}
+
+/* SLOGANS */
 const slogans = [
   "📘 Learn Smart. Build Future.",
   "💡 Small steps lead to big success.",
@@ -55,7 +71,9 @@ function rotateSlogans() {
   }, 500);
 }
 
-/* start slogans */
 setInterval(rotateSlogans, 5000);
 
-window.onload = rotateSlogans;
+window.addEventListener("load", () => {
+  showPopup("Welcome to Campus Notes Hub 🎓");
+  rotateSlogans();
+});
