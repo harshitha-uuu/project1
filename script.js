@@ -88,5 +88,83 @@ window.addEventListener("load", () => {
   showPopup("Welcome to Campus Notes Hub 🎓");
   rotateSlogans();
 });
-  rotateSlogans();
-});
+
+/* ================= CHATBOT ================= */
+function toggleChatbot() {
+  const chatbox = document.getElementById("chatbox");
+  if (!chatbox) return;
+  chatbox.classList.toggle("hidden");
+}
+
+function handleEnter(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+}
+
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const chatMessages = document.getElementById("chatMessages");
+
+  if (!input || !chatMessages) return;
+
+  const userText = input.value.trim();
+  if (userText === "") return;
+
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-msg";
+  userMsg.innerText = userText;
+  chatMessages.appendChild(userMsg);
+
+  input.value = "";
+
+  setTimeout(() => {
+    const botReply = document.createElement("div");
+    botReply.className = "bot-msg";
+    botReply.innerText = getBotResponse(userText);
+    chatMessages.appendChild(botReply);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 700);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+/* BOT ANSWERS */
+function getBotResponse(msg) {
+  msg = msg.toLowerCase();
+
+  if (msg.includes("download")) {
+    return "📥 To download notes: Go to Notes Page → click Download button → you'll see a success popup.";
+  }
+
+  if (msg.includes("student login") || msg.includes("student")) {
+    return "🎓 Student Login: Click Student Login on Home page → enter email/password → login to Notes Library.";
+  }
+
+  if (msg.includes("admin login") || msg.includes("admin")) {
+    return "🛠️ Admin Login: Click Admin Login → enter admin credentials → upload notes in Admin Dashboard.";
+  }
+
+  if (msg.includes("upload")) {
+    return "📤 Upload Notes: Open Admin Dashboard → fill details → choose file → click Upload → success popup will appear.";
+  }
+
+  if (msg.includes("menu")) {
+    return "📌 Use the left menu button ☰ to open navigation. You can switch pages anytime.";
+  }
+
+  if (msg.includes("notes")) {
+    return "📚 Notes Page contains available notes. Search option is available for future filtering.";
+  }
+
+  if (msg.includes("logout")) {
+    return "🚪 Logout: Click Logout button to return back to Home page safely.";
+  }
+
+  if (msg.includes("what is this website") || msg.includes("purpose")) {
+    return "🌟 Campus Notes Hub helps students easily access subject notes and allows admins to upload study materials.";
+  }
+
+  return "🤖 I can help you with: login, download, upload, menu navigation, notes access. Ask me like: 'How to download?'";
+}
