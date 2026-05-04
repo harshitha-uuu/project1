@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Campus Notes Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -39,7 +37,6 @@
 
     <h1>Campus Notes Hub</h1>
 
-    <!-- DYNAMIC SLOGAN -->
     <p class="slogan" id="sloganText">Loading inspiration...</p>
 
     <div class="btn-group">
@@ -48,7 +45,6 @@
     </div>
 
     <p class="mini-text">✨ Your Smart Study Partner for Notes & Resources</p>
-
   </div>
 </div>
 
@@ -128,6 +124,34 @@
 
 <!-- POPUP MESSAGE -->
 <div id="popup" class="popup hidden"></div>
+
+<!-- CHATBOT -->
+<div class="chatbot">
+
+  <button class="chatbot-btn" onclick="toggleChatbot()">💬</button>
+
+  <div id="chatbox" class="chatbox hidden">
+    <div class="chat-header">
+      <h4>CampusBot 🤖</h4>
+      <button class="chat-close" onclick="toggleChatbot()">✖</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages">
+      <div class="bot-msg">
+        Hi 👋 I am CampusBot! Ask me anything about this website.
+      </div>
+      <div class="bot-msg">
+        Example: "How to download notes?" or "How to login as admin?"
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input id="chatInput" type="text" placeholder="Type your question..." onkeydown="handleEnter(event)">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
