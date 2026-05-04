@@ -1,5 +1,5 @@
 function showPage(pageId) {
-  showPopup("Loading page...");
+  showPopup("Loading...");
 
   const pages = document.querySelectorAll(".page");
   pages.forEach(p => p.classList.remove("active"));
@@ -7,10 +7,11 @@ function showPage(pageId) {
   const target = document.getElementById(pageId);
   if (target) target.classList.add("active");
 
-  document.getElementById("sidebar").classList.remove("active");
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar) sidebar.classList.remove("active");
 
   setTimeout(() => {
-    showPopup("Page loaded successfully ✅");
+    showPopup("Opened Successfully ✅");
   }, 600);
 }
 
@@ -39,7 +40,17 @@ function showPopup(message) {
 
   setTimeout(() => {
     popup.classList.remove("show");
-  }, 2000);
+  }, 2500);
+}
+
+/* DOWNLOAD SUCCESS */
+function downloadSuccess() {
+  showPopup("Downloaded Successfully ✅");
+}
+
+/* UPLOAD SUCCESS */
+function uploadSuccess() {
+  showPopup("Uploaded Successfully ✅");
 }
 
 /* SLOGANS */
@@ -75,5 +86,7 @@ setInterval(rotateSlogans, 5000);
 
 window.addEventListener("load", () => {
   showPopup("Welcome to Campus Notes Hub 🎓");
+  rotateSlogans();
+});
   rotateSlogans();
 });
