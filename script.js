@@ -119,13 +119,13 @@ function sendMessage() {
   input.value = "";
 
   setTimeout(() => {
-    const botReply = document.createElement("div");
-    botReply.className = "bot-msg";
-    botReply.innerText = getBotResponse(userText);
-    chatMessages.appendChild(botReply);
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-msg";
+    botMsg.innerText = getBotResponse(userText);
+    chatMessages.appendChild(botMsg);
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
-  }, 700);
+  }, 600);
 
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -134,37 +134,37 @@ function sendMessage() {
 function getBotResponse(msg) {
   msg = msg.toLowerCase();
 
+  if (msg === "hi" || msg === "hello") {
+    return "Hello 👋 Welcome to Campus Notes Hub! How can I help you today?";
+  }
+
   if (msg.includes("download")) {
-    return "📥 To download notes: Go to Notes Page → click Download button → you'll see a success popup.";
+    return "📥 To download notes: Open Notes Page → click Download button → success popup will appear.";
   }
 
   if (msg.includes("student login") || msg.includes("student")) {
-    return "🎓 Student Login: Click Student Login on Home page → enter email/password → login to Notes Library.";
+    return "🎓 Student Login: Click Student Login on Home page → enter details → Login → access Notes Library.";
   }
 
   if (msg.includes("admin login") || msg.includes("admin")) {
-    return "🛠️ Admin Login: Click Admin Login → enter admin credentials → upload notes in Admin Dashboard.";
+    return "🛠️ Admin Login: Click Admin Login → enter admin credentials → upload notes using Admin Dashboard.";
   }
 
   if (msg.includes("upload")) {
-    return "📤 Upload Notes: Open Admin Dashboard → fill details → choose file → click Upload → success popup will appear.";
+    return "📤 Upload Notes: Go to Admin Dashboard → fill title & subject → select file → click Upload.";
   }
 
   if (msg.includes("menu")) {
-    return "📌 Use the left menu button ☰ to open navigation. You can switch pages anytime.";
-  }
-
-  if (msg.includes("notes")) {
-    return "📚 Notes Page contains available notes. Search option is available for future filtering.";
+    return "📌 Use ☰ menu button on top-left to open sidebar and navigate pages easily.";
   }
 
   if (msg.includes("logout")) {
-    return "🚪 Logout: Click Logout button to return back to Home page safely.";
+    return "🚪 Click Logout button to return to the Home page.";
   }
 
-  if (msg.includes("what is this website") || msg.includes("purpose")) {
-    return "🌟 Campus Notes Hub helps students easily access subject notes and allows admins to upload study materials.";
+  if (msg.includes("purpose") || msg.includes("what is this website")) {
+    return "🌟 Campus Notes Hub is built for students to download study notes and for admins to upload resources.";
   }
 
-  return "🤖 I can help you with: login, download, upload, menu navigation, notes access. Ask me like: 'How to download?'";
+  return "🤖 I can help with: login, download, upload, notes, menu navigation. Ask me like: 'How to download notes?'";
 }
