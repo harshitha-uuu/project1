@@ -6,20 +6,20 @@ body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: #f7f5ff;
-  overflow: hidden; /* NO SCROLL */
+  overflow: hidden;
 }
 
-/* PAGE SYSTEM */
+/* PAGE SYSTEM (FIXED CENTER ALIGNMENT) */
 .page {
   display: none;
-  height: 100vh; /* no scroll */
+  height: 100vh;
   width: 100vw;
 
   display: none;
   justify-content: center;
   align-items: center;
-  text-align: center;
 
+  text-align: center;
   padding: 20px;
 }
 
@@ -52,13 +52,15 @@ body {
 }
 
 .college-logo {
-  width: 220px; /* bigger logo */
-  max-width: 70%;
+  width: 320px; /* BIGGER LOGO */
+  max-width: 90%;
   height: auto;
-  padding: 8px 14px;
-  border-radius: 12px;
+
+  padding: 10px 14px;
+  border-radius: 14px;
   background: white;
-  box-shadow: 0 5px 18px rgba(108, 43, 217, 0.22);
+
+  box-shadow: 0 6px 18px rgba(108, 43, 217, 0.25);
 }
 
 /* HEADINGS */
@@ -242,11 +244,13 @@ textarea {
   z-index: 1;
 }
 
-/* POPUP */
+/* POPUP (CENTER BOTTOM FIXED) */
 .popup {
   position: fixed;
-  bottom: 22px;
-  right: 22px;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(25px);
+
   background: linear-gradient(135deg, #6C2BD9, #9b5cff);
   color: white;
   padding: 14px 18px;
@@ -256,15 +260,116 @@ textarea {
   box-shadow: 0 8px 18px rgba(0,0,0,0.18);
 
   opacity: 0;
-  transform: translateY(25px);
   transition: 0.3s ease;
 }
 
 .popup.show {
   opacity: 1;
-  transform: translateY(0px);
+  transform: translateX(-50%) translateY(0px);
 }
 
 .hidden {
   display: none;
+}
+
+/* ================= CHATBOT ================= */
+.chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3000;
+}
+
+.chatbot-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 22px;
+  padding: 0;
+}
+
+.chatbox {
+  width: 320px;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #6C2BD9, #9b5cff);
+  color: white;
+  padding: 12px;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.chat-close {
+  background: white;
+  color: #6C2BD9;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.bot-msg, .user-msg {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 8px 0;
+  max-width: 85%;
+}
+
+.bot-msg {
+  background: rgba(108, 43, 217, 0.12);
+  color: #222;
+  align-self: flex-start;
+}
+
+.user-msg {
+  background: rgba(108, 43, 217, 0.85);
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  border-top: 1px solid rgba(108, 43, 217, 0.15);
+}
+
+.chat-input input {
+  flex: 1;
+  margin: 0;
+  width: auto;
+  border-radius: 10px;
+}
+
+.chat-input button {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
 }
