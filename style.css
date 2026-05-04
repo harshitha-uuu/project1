@@ -34,13 +34,9 @@ body.dark-mode {
   font-family: 'Inter', sans-serif;
 }
 
-/* PREMIUM BACKGROUND: Dot Grid + Base Settings */
+/* BASE BODY */
 body {
   background-color: var(--bg-color);
-  /* THIS IS THE DOT GRID PATTERN */
-  background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
-  background-position: 0 0;
   color: var(--text-main);
   transition: background-color 0.4s ease, color 0.4s ease;
   min-height: 100vh;
@@ -50,17 +46,67 @@ body {
   overflow-x: hidden;
 }
 
-/* ANIMATED BACKGROUND BLOBS */
+/* ========================================= */
+/* 3D ANIMATED PERSPECTIVE GRID BACKGROUND   */
+/* ========================================= */
+.grid-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -3; /* Pushed all the way to the back */
+  perspective: 600px; /* Creates the 3D depth */
+  overflow: hidden;
+  pointer-events: none; /* Prevents blocking clicks */
+}
+
+.grid-bg::before {
+  content: '';
+  position: absolute;
+  bottom: -40%; left: -50%;
+  width: 200%; height: 140%;
+  
+  /* Draws the grid lines */
+  background-image: 
+    linear-gradient(var(--border-glass) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+  background-size: 50px 50px;
+  
+  /* Tilts the grid backwards to create the 3D floor effect */
+  transform: rotateX(75deg);
+  transform-origin: bottom center;
+  
+  /* The continuous forward movement animation */
+  animation: gridMove 3s linear infinite;
+  
+  /* Fades the grid out in the distance (Fog effect) */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 80%);
+  mask-image: linear-gradient(to bottom, transparent 10%, black 80%);
+}
+
+body.dark-mode .grid-bg::before {
+  background-image: 
+    linear-gradient(rgba(129, 140, 248, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.2) 1px, transparent 1px);
+}
+
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 50px; }
+}
+
+/* ========================================= */
+/* ANIMATED BACKGROUND BLOBS                 */
+/* ========================================= */
 body::before, body::after {
   content: '';
   position: fixed;
   width: 50vw; height: 50vw;
   border-radius: 50%;
   filter: blur(120px);
-  z-index: -2; /* Pushed far to the back */
+  z-index: -2; /* Above grid, behind glow */
   animation: floatBlobs 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.5;
-  pointer-events: none; /* Crucial so you can click buttons */
+  pointer-events: none; /* Prevents blocking clicks */
 }
 
 body::before { top: -10%; left: -10%; background: rgba(99, 102, 241, 0.3); }
@@ -81,7 +127,7 @@ body::after { bottom: -10%; right: -10%; background: rgba(168, 85, 247, 0.3); an
   background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
   pointer-events: none; /* CRUCIAL: prevents glow from blocking button clicks */
   transform: translate(-50%, -50%);
-  z-index: -1; /* Placed right behind the glass cards */
+  z-index: -1; /* Right behind the glass cards */
   transition: opacity 0.3s ease;
   will-change: transform;
 }
