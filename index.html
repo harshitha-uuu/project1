@@ -1,158 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Campus Notes Hub</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Notes Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- OPEN MENU -->
-<button class="open-menu" onclick="toggleMenu()">☰</button>
+  <!-- OPEN MENU -->
+  <button class="open-menu" onclick="toggleMenu()">☰</button>
 
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
-  <button class="close-btn" onclick="toggleMenu()">✖</button>
-
-  <h3>📘 Menu</h3>
-
-  <p onclick="showPage('rolePage')">🏠 Home</p>
-  <p onclick="showPage('studentLogin')">🎓 Student</p>
-  <p onclick="showPage('adminLogin')">🛠️ Admin</p>
-  <p onclick="showPage('notesPage')">📚 Notes</p>
-</div>
-
-<!-- ROLE PAGE -->
-<div id="rolePage" class="page active">
-  <div class="center glass">
-
-    <div class="logo-box">
-      <img src="https://www.gitamw.ac.in/media/logo/Gouthami_Auto4-1_DvzJqKN.png" class="college-logo" alt="College Logo">
-    </div>
-
-    <h1>Campus Notes Hub</h1>
-
-    <p class="slogan" id="sloganText">Loading inspiration...</p>
-
-    <div class="btn-group">
-      <button onclick="showPage('studentLogin')">🎓 Student Login</button>
-      <button onclick="showPage('adminLogin')">🛠️ Admin Login</button>
-    </div>
-
-    <p class="mini-text">✨ Your Smart Study Partner for Notes & Resources</p>
+  <!-- SIDEBAR -->
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleMenu()">✖</button>
+    <h3>📘 Menu</h3>
+    <p onclick="showPage('rolePage')">🏠 Home</p>
+    <p onclick="showPage('studentLogin')">🎓 Student</p>
+    <p onclick="showPage('adminLogin')">🛠️ Admin</p>
+    <p onclick="showPage('notesPage')">📚 Notes</p>
   </div>
-</div>
 
-<!-- STUDENT -->
-<div id="studentLogin" class="page">
-  <div class="center glass">
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="role-img">
+  <!-- ROLE PAGE (HOME) -->
+  <div id="rolePage" class="page active">
+    <div class="glass-panel">
+      <div class="logo-box">
+        <img src="https://www.gitamw.ac.in/media/logo/Gouthami_Auto4-1_DvzJqKN.png" class="college-logo" alt="College Logo">
+      </div>
+      <h1>Campus Notes Hub</h1>
+      <!-- DYNAMIC SLOGAN -->
+      <p class="slogan" id="sloganText">Loading inspiration...</p>
+      <div class="button-group">
+        <button onclick="showPage('studentLogin')">🎓 Student Login</button>
+        <button onclick="showPage('adminLogin')">🛠️ Admin Login</button>
+      </div>
+    </div>
+  </div>
 
-    <h2>Student Login</h2>
-    <input placeholder="Email">
-    <input type="password" placeholder="Password">
-
-    <div class="btn-group">
+  <!-- STUDENT LOGIN -->
+  <div id="studentLogin" class="page">
+    <div class="glass-panel">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="role-img" alt="Student">
+      <h2>Student Login</h2>
+      <input type="text" placeholder="Email">
+      <input type="password" placeholder="Password">
       <button onclick="showPage('notesPage')">Login</button>
-      <button onclick="showPage('rolePage')">Back</button>
+      <button class="secondary-btn" onclick="showPage('rolePage')">Back</button>
     </div>
   </div>
-</div>
 
-<!-- ADMIN -->
-<div id="adminLogin" class="page">
-  <div class="center glass">
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="role-img">
-
-    <h2>Admin Login</h2>
-    <input placeholder="Admin Email">
-    <input type="password" placeholder="Password">
-
-    <div class="btn-group">
+  <!-- ADMIN LOGIN -->
+  <div id="adminLogin" class="page">
+    <div class="glass-panel">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="role-img" alt="Admin">
+      <h2>Admin Login</h2>
+      <input type="text" placeholder="Admin Email">
+      <input type="password" placeholder="Password">
       <button onclick="showPage('adminDashboard')">Login</button>
-      <button onclick="showPage('rolePage')">Back</button>
+      <button class="secondary-btn" onclick="showPage('rolePage')">Back</button>
     </div>
   </div>
-</div>
 
-<!-- NOTES -->
-<div id="notesPage" class="page">
-  <div class="center glass">
-    <h2>📚 Notes Library</h2>
-
-    <input placeholder="Search notes...">
-
-    <div class="card">
-      <h3>DBMS Unit 1</h3>
-      <p>Semester 4</p>
-      <button onclick="downloadSuccess()">⬇ Download</button>
-    </div>
-
-    <div class="card">
-      <h3>OS Unit 2</h3>
-      <p>Semester 3</p>
-      <button onclick="downloadSuccess()">⬇ Download</button>
-    </div>
-
-    <button onclick="showPage('rolePage')">Logout</button>
-  </div>
-</div>
-
-<!-- ADMIN DASHBOARD -->
-<div id="adminDashboard" class="page">
-  <div class="center glass">
-    <h2>🛠️ Admin Dashboard</h2>
-
-    <input placeholder="Title">
-    <input placeholder="Subject">
-    <textarea placeholder="Description"></textarea>
-
-    <input type="file">
-    <button onclick="uploadSuccess()">Upload</button>
-
-    <button onclick="showPage('rolePage')">Logout</button>
-  </div>
-</div>
-
-<!-- MOUSE GLOW -->
-<div class="cursor-glow"></div>
-
-<!-- POPUP MESSAGE -->
-<div id="popup" class="popup hidden"></div>
-
-<!-- CHATBOT -->
-<div class="chatbot">
-
-  <button class="chatbot-btn" onclick="toggleChatbot()">💬</button>
-
-  <div id="chatbox" class="chatbox hidden">
-    <div class="chat-header">
-      <h4>CampusBot 🤖</h4>
-      <button class="chat-close" onclick="toggleChatbot()">✖</button>
-    </div>
-
-    <div id="chatMessages" class="chat-messages">
-      <div class="bot-msg">
-        Hi 👋 I am CampusBot! Ask me anything about this website.
+  <!-- NOTES PAGE -->
+  <div id="notesPage" class="page">
+    <div class="glass-panel wide-panel">
+      <h2>📚 Notes Library</h2>
+      <input type="text" placeholder="Search notes..." class="search-bar">
+      
+      <div class="notes-grid">
+        <div class="card">
+          <h3>DBMS Unit 1</h3>
+          <p>Semester 4</p>
+          <button onclick="handleDownload()">⬇ Download</button>
+        </div>
+        <div class="card">
+          <h3>OS Unit 2</h3>
+          <p>Semester 3</p>
+          <button onclick="handleDownload()">⬇ Download</button>
+        </div>
       </div>
-      <div class="bot-msg">
-        Example: "How to download notes?" or "How to login as admin?"
-      </div>
-    </div>
 
-    <div class="chat-input">
-      <input id="chatInput" type="text" placeholder="Type your question..." onkeydown="handleEnter(event)">
-      <button onclick="sendMessage()">Send</button>
+      <button class="secondary-btn logout-btn" onclick="showPage('rolePage')">Logout</button>
     </div>
   </div>
 
-</div>
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminDashboard" class="page">
+    <div class="glass-panel">
+      <h2>🛠️ Admin Dashboard</h2>
+      <input type="text" placeholder="Title">
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Description" rows="3"></textarea>
+      <input type="file" class="file-input">
+      <button onclick="handleUpload()">Upload</button>
+      <br>
+      <button class="secondary-btn logout-btn" onclick="showPage('rolePage')">Logout</button>
+    </div>
+  </div>
 
-<script src="script.js"></script>
+  <!-- MOUSE GLOW -->
+  <div class="cursor-glow"></div>
+
+  <!-- POPUP LOADING MESSAGE -->
+  <div id="popup" class="popup hidden"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
