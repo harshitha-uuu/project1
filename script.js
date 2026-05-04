@@ -1,96 +1,156 @@
-function showPage(pageId) {
-  showPopup("Loading page...");
+// --- PAGE ROUTING SYSTEM ---
+function navigateTo(pageId) {
+  // Hide sidebar if open
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
 
-  const pages = document.querySelectorAll(".page");
-  pages.forEach(p => p.classList.remove("active"));
+  // Switch pages
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+  
+  const targetPage = document.getElementById(pageId);
+  if (targetPage) {
+    targetPage.classList.add('active');
+  }
 
-  const target = document.getElementById(pageId);
-  if (target) target.classList.add("active");
+  // Dynamic greeting/toast
+  if (pageId === 'home') {
+    showToast("Logged out successfully");
+  } else if (pageId === 'notes') {
+    showToast("Welcome to the Student Portal 👋");
+  } else if (pageId === 'dashboard') {
+    showToast("Admin access granted 🛡️");
+  }
+}
 
-  document.getElementById("sidebar").classList.remove("active");
+// --- SIDEBAR TOGGLE ---
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
 
+// --- THEME TOGGLE (DARK/LIGHT MODE) ---
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.querySelector('.theme-toggle i');
+  
+  body.classList.toggle('dark-mode');
+  
+  if (body.classList.contains('dark-mode')) {
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  } else {
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  }
+}
+
+// --- TOAST NOTIFICATIONS ---
+let toastTimeout;
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.innerText = message;
+  toast.classList.add('show');
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Actions (Download/Upload)
+function triggerAction(type) {
+  if (type === 'download') {
+    showToast("✅ Note downloaded successfully!");
+  } else if (type === 'upload') {
+    showToast("🚀 Material published successfully!");
+    // Clear inputs visually
+    document.querySelectorAll('#dashboard input, #dashboard textarea').forEach(el => el.value = '');
+  }
+}
+
+// --- SMART CHATBOT SYSTEM ---
+const botKnowledge = {
+  greetings: ["hello", "hi", "hey", "help", "start"],
+  login: ["login", "sign in", "access", "account"],
+  download: ["download", "get notes", "pdf", "read"],
+  upload: ["upload", "admin", "publish", "add notes"]
+};
+
+function toggleChat() {
+  const chatWindow = document.getElementById('chatbot-window');
+  chatWindow.classList.toggle('open');
+}
+
+function handleChatEnter(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+}
+
+function sendMessage() {
+  const inputEl = document.getElementById('chat-input');
+  const message = inputEl.value.trim();
+  if (!message) return;
+
+  // Add User Message to UI
+  addMessageToUI(message, 'user-message');
+  inputEl.value = '';
+
+  // Simulate typing delay for bot
   setTimeout(() => {
-    // Only show page loaded if we aren't logging out to the main menu
-    if(pageId !== 'rolePage') {
-        showPopup("Page loaded successfully ✅");
-    }
+    generateBotResponse(message.toLowerCase());
   }, 600);
 }
 
-/* NEW REQUIRED FUNCTIONS */
-function handleDownload() {
-  showPopup("Successfully downloaded ✅");
+function generateBotResponse(msg) {
+  let response = "I'm still learning! 🤔 You can ask me about **logging in**, **downloading notes**, or **admin access**.";
+
+  if (botKnowledge.greetings.some(keyword => msg.includes(keyword))) {
+    response = "Hello there! 👋 I am the Campus Notes Hub Assistant. How can I guide you today?";
+  } else if (botKnowledge.login.some(keyword => msg.includes(keyword))) {
+    response = "To access materials, click 'Student Access' on the Home page and log in with your university email. 🎓";
+  } else if (botKnowledge.download.some(keyword => msg.includes(keyword))) {
+    response = "Once you log into the Student Portal, you can search for your subject and click the 'Download PDF' button on any note card! 📚";
+  } else if (botKnowledge.upload.some(keyword => msg.includes(keyword))) {
+    response = "Uploading is restricted to staff. Admins can log in via the 'Admin Access' portal to drag-and-drop new syllabus materials. 🛡️";
+  }
+
+  addMessageToUI(response, 'bot-message');
 }
 
-function handleUpload() {
-  showPopup("Uploaded successfully ✅");
-  // Optional: clear the inputs after upload
-  document.querySelectorAll('#adminDashboard input, #adminDashboard textarea').forEach(input => input.value = '');
-}
-
-/* SIDEBAR */
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
-}
-
-/* MOUSE GLOW */
-const glow = document.querySelector(".cursor-glow");
-
-document.addEventListener("mousemove", (e) => {
-  if (!glow) return;
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
-});
-
-/* POPUP SYSTEM */
-function showPopup(message) {
-  const popup = document.getElementById("popup");
-  if (!popup) return;
-
-  popup.innerText = message;
-  popup.classList.remove("hidden");
-  popup.classList.add("show");
-
-  // Clear any existing timeout so popups don't overlap strangely
-  if(window.popupTimeout) clearTimeout(window.popupTimeout);
+function addMessageToUI(text, className) {
+  const chatBody = document.getElementById('chat-body');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `message ${className}`;
+  msgDiv.innerText = text;
   
-  window.popupTimeout = setTimeout(() => {
-    popup.classList.remove("show");
-  }, 2500); // Extended slightly so it's easier to read
+  chatBody.appendChild(msgDiv);
+  // Auto-scroll to bottom
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-/* SLOGANS */
+// --- DYNAMIC SLOGANS ---
 const slogans = [
-  "📘 Learn Smart. Build Future.",
-  "💡 Small steps lead to big success.",
-  "🚀 Stay consistent, stay strong.",
-  "🔥 Push yourself beyond limits.",
-  "📚 Knowledge is power.",
-  "🎯 Focus today, succeed tomorrow.",
-  "🏆 Excellence is a habit.",
-  "🧠 Train your mind daily.",
-  "⚡ Dream big, work hard.",
-  "🌟 Every expert was once a beginner."
+  "Empowering your academic journey.",
+  "Your digital campus library.",
+  "Learn effectively, perform excellently.",
+  "All your syllabus materials in one place."
 ];
+let sloganIndex = 0;
 
-let i = 0;
-
-function rotateSlogans() {
-  const el = document.getElementById("sloganText");
-  if (!el) return;
-
-  el.style.opacity = 0;
-
-  setTimeout(() => {
-    el.innerText = slogans[i];
-    el.style.opacity = 1;
-    i = (i + 1) % slogans.length;
-  }, 500);
-}
-
-setInterval(rotateSlogans, 5000);
-
-window.addEventListener("load", () => {
-  showPopup("Welcome to Campus Notes Hub 🎓");
-  rotateSlogans();
-});
+setInterval(() => {
+  const sloganEl = document.getElementById('dynamic-slogan');
+  if (sloganEl) {
+    sloganEl.style.opacity = 0;
+    setTimeout(() => {
+      sloganIndex = (sloganIndex + 1) % slogans.length;
+      sloganEl.innerText = slogans[sloganIndex];
+      sloganEl.style.opacity = 1;
+    }, 400); // Wait for fade out
+    sloganEl.style.transition = "opacity 0.4s ease";
+  }
+}, 4000);
