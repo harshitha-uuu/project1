@@ -9,17 +9,16 @@ body {
   overflow: hidden;
 }
 
-/* PAGE SYSTEM (FIXED CENTER ALIGNMENT) */
+/* PAGE SYSTEM */
 .page {
   display: none;
   height: 100vh;
   width: 100vw;
 
-  display: none;
   justify-content: center;
   align-items: center;
-
   text-align: center;
+
   padding: 20px;
 }
 
@@ -27,20 +26,20 @@ body {
   display: flex;
 }
 
+/* CENTER WRAPPER */
+.center {
+  max-width: 560px;
+  width: 100%;
+}
+
 /* GLASS UI CARD */
 .glass {
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   border-radius: 18px;
-  padding: 30px 25px;
+  padding: 35px 25px;
   box-shadow: 0 8px 30px rgba(108, 43, 217, 0.15);
   border: 1px solid rgba(108, 43, 217, 0.15);
-}
-
-/* CENTER WRAPPER */
-.center {
-  max-width: 520px;
-  width: 100%;
 }
 
 /* LOGO */
@@ -48,26 +47,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
 .college-logo {
-  width: 320px; /* BIGGER LOGO */
-  max-width: 90%;
+  width: 340px;
+  max-width: 95%;
   height: auto;
 
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 14px;
   background: white;
-
   box-shadow: 0 6px 18px rgba(108, 43, 217, 0.25);
 }
 
 /* HEADINGS */
 h1 {
   font-family: "Poppins", sans-serif;
-  font-size: 34px;
-  margin: 10px 0;
+  font-size: 36px;
+  margin: 12px 0;
   color: #6C2BD9;
 }
 
@@ -85,28 +83,28 @@ h2 {
   font-style: italic;
   min-height: 20px;
   transition: opacity 0.5s ease;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .mini-text {
-  margin-top: 15px;
+  margin-top: 18px;
   font-size: 13px;
   color: #444;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* BUTTON GROUP */
 .btn-group {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 /* BUTTONS */
 button {
-  padding: 11px 18px;
-  margin: 6px;
+  padding: 12px 20px;
   border: none;
   border-radius: 10px;
   background: linear-gradient(135deg, #6C2BD9, #9b5cff);
@@ -128,7 +126,7 @@ input, textarea {
   margin: 12px auto;
   padding: 12px;
   width: 90%;
-  max-width: 320px;
+  max-width: 330px;
   border: 1px solid rgba(108, 43, 217, 0.25);
   border-radius: 10px;
   outline: none;
@@ -170,7 +168,7 @@ textarea {
   color: white;
   padding-top: 60px;
   transition: 0.3s ease;
-  z-index: 1000;
+  z-index: 2500;
   box-shadow: 6px 0px 15px rgba(0,0,0,0.15);
 }
 
@@ -216,11 +214,11 @@ textarea {
   border: none;
   padding: 10px 14px;
   border-radius: 10px;
-  z-index: 1100;
+  z-index: 2600;
   box-shadow: 0 6px 14px rgba(108, 43, 217, 0.22);
 }
 
-/* MOUSE GLOW EFFECT */
+/* MOUSE GLOW */
 .cursor-glow {
   position: fixed;
   width: 260px;
@@ -239,12 +237,12 @@ textarea {
 }
 
 /* KEEP CONTENT ABOVE GLOW */
-.page, .sidebar, button {
+.page, .sidebar {
   position: relative;
   z-index: 1;
 }
 
-/* POPUP (CENTER BOTTOM FIXED) */
+/* POPUP */
 .popup {
   position: fixed;
   bottom: 25px;
@@ -256,7 +254,7 @@ textarea {
   padding: 14px 18px;
   border-radius: 14px;
   font-size: 14px;
-  z-index: 2000;
+  z-index: 3000;
   box-shadow: 0 8px 18px rgba(0,0,0,0.18);
 
   opacity: 0;
@@ -272,14 +270,15 @@ textarea {
   display: none;
 }
 
-/* ================= CHATBOT ================= */
+/* ================= CHATBOT (FIXED) ================= */
 .chatbot {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 3000;
+  bottom: 18px;
+  right: 18px;
+  z-index: 1800;
 }
 
+/* Floating button */
 .chatbot-btn {
   width: 55px;
   height: 55px;
@@ -288,10 +287,11 @@ textarea {
   padding: 0;
 }
 
+/* Chatbox */
 .chatbox {
   width: 320px;
   height: 420px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   box-shadow: 0 10px 22px rgba(0,0,0,0.15);
@@ -299,11 +299,13 @@ textarea {
   position: absolute;
   bottom: 70px;
   right: 0;
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
+/* Header */
 .chat-header {
   background: linear-gradient(135deg, #6C2BD9, #9b5cff);
   color: white;
@@ -325,13 +327,17 @@ textarea {
   padding: 4px 8px;
   border-radius: 8px;
   font-size: 12px;
+  cursor: pointer;
 }
 
+/* Messages */
 .chat-messages {
   flex: 1;
   padding: 12px;
   overflow-y: auto;
   font-size: 13px;
+  display: flex;
+  flex-direction: column;
 }
 
 .bot-msg, .user-msg {
@@ -351,9 +357,9 @@ textarea {
   background: rgba(108, 43, 217, 0.85);
   color: white;
   align-self: flex-end;
-  margin-left: auto;
 }
 
+/* Input area */
 .chat-input {
   display: flex;
   padding: 10px;
@@ -364,12 +370,21 @@ textarea {
 .chat-input input {
   flex: 1;
   margin: 0;
-  width: auto;
+  padding: 10px;
   border-radius: 10px;
 }
 
 .chat-input button {
   margin: 0;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 500px) {
+  .chatbox {
+    width: 92vw;
+    height: 420px;
+  }
 }
