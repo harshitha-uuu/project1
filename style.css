@@ -1,53 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: #f7f5ff;
-  overflow-x: hidden;
+  overflow: hidden; /* NO SCROLL */
 }
 
 /* PAGE SYSTEM */
 .page {
   display: none;
-  padding: 40px;
+  height: 100vh; /* no scroll */
+  width: 100vw;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+
+  padding: 20px;
 }
 
 .page.active {
-  display: block;
+  display: flex;
 }
 
-/* HEADINGS */
-h1, h2 {
-  font-family: "Poppins";
-  color: #6C2BD9;
+/* GLASS UI CARD */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 30px rgba(108, 43, 217, 0.15);
+  border: 1px solid rgba(108, 43, 217, 0.15);
 }
 
-/* BUTTONS */
-button {
-  padding: 10px 16px;
-  margin: 8px;
-  border: none;
-  border-radius: 8px;
-  background: #6C2BD9;
-  color: white;
-  cursor: pointer;
+/* CENTER WRAPPER */
+.center {
+  max-width: 520px;
+  width: 100%;
 }
 
-button:hover {
-  background: #4e1fa8;
-}
-
-/* INPUTS */
-input, textarea {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 250px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-/* LOGO BOX (PROFESSIONAL ALIGNMENT) */
+/* LOGO */
 .logo-box {
   display: flex;
   justify-content: center;
@@ -55,23 +51,110 @@ input, textarea {
   margin-bottom: 12px;
 }
 
-/* LOGO (PERFECT SIZE) */
 .college-logo {
-  width: 160px;
-  max-width: 45vw;
+  width: 220px; /* bigger logo */
+  max-width: 70%;
   height: auto;
-  display: block;
-
-  padding: 6px 10px;
+  padding: 8px 14px;
+  border-radius: 12px;
   background: white;
-  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(108, 43, 217, 0.22);
+}
 
-  box-shadow: 0 4px 12px rgba(108,43,217,0.18);
+/* HEADINGS */
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  margin: 10px 0;
+  color: #6C2BD9;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
+  margin: 10px 0;
+  color: #6C2BD9;
+}
+
+/* SLOGAN */
+.slogan {
+  font-size: 16px;
+  color: #333;
+  font-style: italic;
+  min-height: 20px;
+  transition: opacity 0.5s ease;
+  margin-bottom: 18px;
+}
+
+.mini-text {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #444;
+  opacity: 0.8;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* BUTTONS */
+button {
+  padding: 11px 18px;
+  margin: 6px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6C2BD9, #9b5cff);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 6px 14px rgba(108, 43, 217, 0.22);
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 18px rgba(108, 43, 217, 0.3);
+}
+
+/* INPUTS */
+input, textarea {
+  display: block;
+  margin: 12px auto;
+  padding: 12px;
+  width: 90%;
+  max-width: 320px;
+  border: 1px solid rgba(108, 43, 217, 0.25);
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  height: 90px;
+  resize: none;
 }
 
 /* ROLE IMAGE */
 .role-img {
-  width: 120px;
+  width: 110px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 6px 10px rgba(108, 43, 217, 0.25));
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 16px;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 14px;
+  border: 1px solid rgba(108, 43, 217, 0.15);
+  box-shadow: 0 5px 14px rgba(108, 43, 217, 0.12);
 }
 
 /* SIDEBAR */
@@ -79,13 +162,14 @@ input, textarea {
   position: fixed;
   top: 0;
   left: -240px;
-  width: 200px;
+  width: 210px;
   height: 100%;
-  background: #6C2BD9;
+  background: linear-gradient(180deg, #6C2BD9, #4e1fa8);
   color: white;
   padding-top: 60px;
-  transition: 0.3s;
+  transition: 0.3s ease;
   z-index: 1000;
+  box-shadow: 6px 0px 15px rgba(0,0,0,0.15);
 }
 
 .sidebar.active {
@@ -94,11 +178,13 @@ input, textarea {
 
 .sidebar h3 {
   text-align: center;
+  font-size: 18px;
 }
 
 .sidebar p {
-  padding: 12px;
+  padding: 14px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .sidebar p:hover {
@@ -108,12 +194,14 @@ input, textarea {
 /* CLOSE BUTTON */
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 12px;
   right: 10px;
   background: white;
   color: #6C2BD9;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
 }
 
 /* OPEN MENU */
@@ -125,40 +213,23 @@ input, textarea {
   color: white;
   border: none;
   padding: 10px 14px;
-  border-radius: 6px;
-  z-index: 1100;
-}
-
-/* CARD */
-.card {
-  background: white;
-  padding: 15px;
-  margin: 15px auto;
-  width: 300px;
   border-radius: 10px;
-  border: 1px solid #eee;
-}
-
-/* SLOGAN */
-.slogan {
-  color: #6C2BD9;
-  font-style: italic;
-  min-height: 20px;
-  transition: opacity 0.5s ease;
+  z-index: 1100;
+  box-shadow: 0 6px 14px rgba(108, 43, 217, 0.22);
 }
 
 /* MOUSE GLOW EFFECT */
 .cursor-glow {
   position: fixed;
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   pointer-events: none;
 
   background: radial-gradient(circle,
-    rgba(180,120,255,0.25),
-    rgba(108,43,217,0.10),
-    transparent 70%
+    rgba(180,120,255,0.28),
+    rgba(108,43,217,0.12),
+    transparent 72%
   );
 
   transform: translate(-50%, -50%);
@@ -171,23 +242,21 @@ input, textarea {
   z-index: 1;
 }
 
-/* POPUP LOADER */
+/* POPUP */
 .popup {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-
-  background: #6C2BD9;
+  bottom: 22px;
+  right: 22px;
+  background: linear-gradient(135deg, #6C2BD9, #9b5cff);
   color: white;
-  padding: 12px 16px;
-  border-radius: 10px;
-
+  padding: 14px 18px;
+  border-radius: 14px;
   font-size: 14px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
   z-index: 2000;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
 
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(25px);
   transition: 0.3s ease;
 }
 
@@ -197,7 +266,5 @@ input, textarea {
 }
 
 .hidden {
-  display: none;
-}
   display: none;
 }
