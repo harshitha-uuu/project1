@@ -9,12 +9,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ELEGANT MOUSE GLOW -->
-  <div class="cursor-glow"></div>
-
-  <!-- THE NEW 3D ANIMATED GRID -->
-  <div class="grid-bg"></div>
-
 
   <!-- TOP NAVIGATION -->
   <nav class="top-nav">
@@ -99,7 +93,7 @@
       </div>
     </section>
 
-    <!-- NOTES LIBRARY (STUDENT PORTAL) -->
+    <!-- NOTES LIBRARY -->
     <section id="notes" class="page">
       <div class="dashboard-header">
         <h2>📚 Resource Library</h2>
@@ -109,9 +103,19 @@
         <i class="fas fa-search"></i>
         <input type="text" placeholder="Search by subject, unit, or semester...">
       </div>
-      <!-- Database injects notes here -->
-      <div id="notes-grid-container" class="notes-grid">
-         <p>Loading notes from database...</p>
+      <div class="notes-grid">
+        <div class="note-card glass">
+          <div class="note-badge">Semester 4</div>
+          <h3>Database Management (DBMS)</h3>
+          <p>Unit 1: Relational Models & SQL</p>
+          <button class="btn btn-outline full-width" onclick="triggerAction('download')"><i class="fas fa-cloud-download-alt"></i> Download PDF</button>
+        </div>
+        <div class="note-card glass">
+          <div class="note-badge">Semester 3</div>
+          <h3>Operating Systems (OS)</h3>
+          <p>Unit 2: Process Synchronization</p>
+          <button class="btn btn-outline full-width" onclick="triggerAction('download')"><i class="fas fa-cloud-download-alt"></i> Download PDF</button>
+        </div>
       </div>
     </section>
 
@@ -123,18 +127,18 @@
       </div>
       <div class="upload-card glass">
         <div class="input-group">
-          <input type="text" id="upload-title" placeholder="Document Title">
+          <input type="text" placeholder="Document Title">
         </div>
         <div class="input-group">
-          <input type="text" id="upload-subject" placeholder="Subject / Course">
+          <input type="text" placeholder="Subject / Course">
         </div>
         <div class="input-group">
-          <textarea id="upload-desc" placeholder="Brief Description..." rows="3"></textarea>
+          <textarea placeholder="Brief Description..." rows="3"></textarea>
         </div>
         <div class="file-drop-zone">
           <i class="fas fa-file-upload fa-2x"></i>
           <p>Drag & drop files or click to browse</p>
-          <input type="file" id="upload-file" title="Upload Note">
+          <input type="file" title="Upload Note">
         </div>
         <button class="btn btn-primary full-width mt-10" onclick="triggerAction('upload')">Publish Material <i class="fas fa-paper-plane"></i></button>
       </div>
@@ -169,10 +173,9 @@
     </div>
   </div>
 
-  <!-- SUPABASE LIBRARY CONNECTION -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- ELEGANT MOUSE GLOW -->
+  <div class="cursor-glow"></div>
 
-  <!-- YOUR JAVASCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
